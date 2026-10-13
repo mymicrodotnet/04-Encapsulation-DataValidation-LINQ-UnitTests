@@ -1,0 +1,7 @@
+5
+20
+Ida Svensson 65 2200
+Berit Dahl 57 3333
+Bert Lewinsson 27 600
+Anna Hamren 44 666.66
+Jacob Andersson 35 559.4

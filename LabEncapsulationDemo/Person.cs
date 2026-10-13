@@ -1,34 +1,39 @@
-﻿namespace LabEncapsulationDemo
+﻿using System.Globalization; // comma instead of dot for decimals
+namespace LabEncapsulationDemo
 {
   public class Person
   {
-    // Privata fält
-    private string _firstName = string.Empty;
-    private string _lastName = string.Empty;
-    private int _age;
+    // Private Fields
+    // The fields are private, which means they cannot be accessed directly from outside the class.
+    // To access and modify these fields, we use public properties.
+    private string firstName = string.Empty;
+    private string lastName = string.Empty;
+    private int age;
+    private decimal salary;
 
-    // Fälten är privata, vilket innebär att de inte kan nås direkt utanför klassen. 
-    // För att komma åt och ändra dessa fält använder vi publika egenskaper (properties).
-    public Person(string firstName, string lastName, int age)
+    // Constructor
+    public Person(string firstName, string lastName, int age, decimal salary)
     {
       FirstName = firstName;
       LastName = lastName;
       Age = age;
+      Salary = salary;
     }
 
+    // Properties: get,set accessors | Encapsulation
     public string FirstName
     {
       get
       {
-        return _firstName;
+        return firstName;
       }
       private set
       {
         if (string.IsNullOrWhiteSpace(value))
         {
-          throw new ArgumentException("Förnamn kan inte vara tomt eller innehålla endast mellanslag.");
+          throw new ArgumentException("First name cannot be empty or contain only whitespace.");
         }
-        _firstName = value;
+        firstName = value;
       }
     }
 
@@ -36,24 +41,23 @@
     {
       get
       {
-        return _lastName;
+        return lastName;
       }
       private set
       {
         if (string.IsNullOrWhiteSpace(value))
         {
-          throw new ArgumentException("Efternamn kan inte vara tomt eller innehålla endast mellanslag.");
+          throw new ArgumentException("Last name cannot be empty or contain only whitespace.");
         }
-        _lastName = value;
+        lastName = value;
       }
     }
-
 
     public int Age
     {
       get
       {
-        return _age;
+        return age;
       }
       private set
       {
@@ -61,15 +65,48 @@
         {
           throw new ArgumentOutOfRangeException(
              nameof(value),
-             "Ålder kan inte vara negativ.");
+             "Age cannot be negative.");
         }
-        _age = value;
+        age = value;
       }
     }
 
+    public decimal Salary
+    {
+      get // get accessor
+      {
+        return salary;
+      }
+      private set
+      {
+        if (value < 0)
+        {
+          throw new ArgumentOutOfRangeException(
+             nameof(value),
+             "Salary cannot be negative.");
+        }
+        salary = value;
+      }
+    }
+
+    // Methods
     public override string ToString()
     {
-      return $"{FirstName} {LastName} is {Age} years old.";
+      // return $"{FirstName} {LastName} is {Age} years old.";
+      // return $"{FirstName} {LastName} receives {salary:F2} dollars.";
+      return $"{FirstName} {LastName} receives {salary.ToString("F2", CultureInfo.InvariantCulture)} dollars."; // To show dot instead of comma for decimals.
+    }
+
+    public void IncreaseSalary(decimal percentage)
+    {
+      if (age < 30) // person should receive half the percentage increase
+      {
+        salary += (percentage * salary / 100) / 2;
+      }
+      else // person should receive full percentage increase
+      {
+        salary += percentage * salary / 100;
+      }
     }
   }
 }
