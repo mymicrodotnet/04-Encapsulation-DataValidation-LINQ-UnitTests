@@ -33,6 +33,12 @@ namespace LabEncapsulationDemo
         {
           throw new ArgumentException("First name cannot be empty or contain only whitespace.");
         }
+
+        // Names must be at least 3 symbols
+        if (value.Length < 3)
+        {
+          throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
+        }
         firstName = value;
       }
     }
@@ -49,6 +55,12 @@ namespace LabEncapsulationDemo
         {
           throw new ArgumentException("Last name cannot be empty or contain only whitespace.");
         }
+
+        // LastName must be at least 3 symbols
+        if (value.Length < 3)
+        {
+          throw new ArgumentException("Last name cannot contain fewer than 3 symbols!");
+        }
         lastName = value;
       }
     }
@@ -61,11 +73,10 @@ namespace LabEncapsulationDemo
       }
       private set
       {
-        if (value < 0)
+        if (value <= 0)
         {
-          throw new ArgumentOutOfRangeException(
-             nameof(value),
-             "Age cannot be negative.");
+          throw new ArgumentException(
+             "Age cannot be zero or a negative integer!");
         }
         age = value;
       }
@@ -84,6 +95,11 @@ namespace LabEncapsulationDemo
           throw new ArgumentOutOfRangeException(
              nameof(value),
              "Salary cannot be negative.");
+        }
+        if (value >= 0 && value < 460)
+        {
+          throw new ArgumentException(
+             "Salary cannot be less than 460 dollar!");
         }
         salary = value;
       }
