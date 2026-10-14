@@ -1,7 +1,7 @@
-5
-20 
+5 
+20
 Anna Ivanov -6 2200
 B Dahl 57 3333
-Hanna Ma 27 600
-Asen Holm 44 200
+Hanna Ma 27 600 
+Asen Holm 44 200 
 Mikael Johansson 35 500

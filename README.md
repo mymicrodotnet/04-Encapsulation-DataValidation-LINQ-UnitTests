@@ -197,3 +197,109 @@ public decimal Salary
 	}
 }
 ```
+
+# input.txt
+
+This file: `input.txt` is used to store input data that the program can read and process, instead of entering the data manually in the console line by line.
+
+## Part 1. Sort Persons by Name and Age
+
+Instead of entering
+
+```cs
+INPUT:
+Anna Persson 65
+Anna Andersson 34
+Johanna Eriksson 57
+Johanna Svensson 27
+Erika Samuelsson 35
+
+OUTPUT:
+dotnet run < input.txt
+Anna Andersson is 34 years old.
+Anna Persson is 65 years old.
+Erika Samuelsson is 35 years old.
+Johanna Svensson is 27 years old.
+Johanna Eriksson is 57 years old.
+```
+
+## Part 2. Salary Increase
+
+```cs
+INPUT:
+5
+20
+Anna Ivanov -6 2200
+B Dahl 57 3333
+Hanna Ma 27 600
+Asen Holm 44 200
+Mikael Johansson 35 500 20
+
+OUTPUT:
+dotnet run < input.txt
+Ida Svensson receives 2640.00 dollars.
+Berit Dahl receives 3999.60 dollars.
+Bert Lewinsson receives 660.00 dollars.
+Anna Hamren receives 799.99 dollars.
+Jacob Andersson receives 671.28 dollars.
+```
+
+## Part 3. Validation of Data
+
+```cs
+INPUT:
+5
+20
+Anna Ivanov -6 2200
+B Dahl 57 3333
+Hanna Ma 27 600
+Asen Holm 44 200
+Mikael Johansson 35 500 20
+
+OUTPUT:
+dotnet run < input.txt
+Age cannot be zero or a negative integer!
+First name cannot contain fewer than 3 symbols!
+Last name cannot contain fewer than 3 symbols!
+Salary cannot be less than 460 dollar!
+Mikael Johansson receives 600.00 dollars.
+
+----------------
+INPUT:
+5
+20
+Anna Ivanov -6 2200
+B Dahl 57 3333
+Hanna Ma 27 600
+Asen Holm 44 200
+Mikael Johansson 29 500
+
+OUTPUT:
+dotnet run < input.txt
+Age cannot be zero or a negative integer!
+First name cannot contain fewer than 3 symbols!
+Last name cannot contain fewer than 3 symbols!
+Salary cannot be less than 460 dollar!
+Mikael Johansson receives 550.00 dollars.
+```
+
+# Unit Tests | xUnit
+
+Not a requirements but I wanted to know how it works.
+
+```cs
+D:\User\dotnet\04-Encapsulation-DataValidation-LINQ-UnitTests
+├── LabEncapsulationDemo
+|  ├── input.txt
+|  ├── LabEncapsulationDemo.csproj
+|  ├── LabEncapsulationDemo.slnx
+|  ├── Person.cs
+|  └── Program.cs
+├── LabEncapsulationDemo.Tests
+|  ├── LabEncapsulationDemo.Tests.csproj
+|  └── UnitTest1.cs
+└── README.md
+
+directory: 10 file: 18
+ignored: directory (4)
+```

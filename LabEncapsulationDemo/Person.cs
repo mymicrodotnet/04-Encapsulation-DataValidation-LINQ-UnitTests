@@ -6,10 +6,10 @@ namespace LabEncapsulationDemo
     // Private Fields
     // The fields are private, which means they cannot be accessed directly from outside the class.
     // To access and modify these fields, we use public properties.
-    private string firstName = string.Empty;
-    private string lastName = string.Empty;
-    private int age;
-    private decimal salary;
+    private string _firstName = string.Empty;
+    private string _lastName = string.Empty;
+    private int _age;
+    private decimal _salary; // Part2
 
     // Constructor
     public Person(string firstName, string lastName, int age, decimal salary)
@@ -17,7 +17,7 @@ namespace LabEncapsulationDemo
       FirstName = firstName;
       LastName = lastName;
       Age = age;
-      Salary = salary;
+      Salary = salary; // Part2: Expand Person, salary (decimal), IncreaseSalary(decimal percentage) 
     }
 
     // Properties: get,set accessors | Encapsulation
@@ -25,7 +25,7 @@ namespace LabEncapsulationDemo
     {
       get
       {
-        return firstName;
+        return _firstName;
       }
       private set
       {
@@ -34,12 +34,12 @@ namespace LabEncapsulationDemo
           throw new ArgumentException("First name cannot be empty or contain only whitespace.");
         }
 
-        // Names must be at least 3 symbols
+        // Part3: Names must be at least 3 symbols
         if (value.Length < 3)
         {
           throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
         }
-        firstName = value;
+        _firstName = value;
       }
     }
 
@@ -47,7 +47,7 @@ namespace LabEncapsulationDemo
     {
       get
       {
-        return lastName;
+        return _lastName;
       }
       private set
       {
@@ -56,12 +56,12 @@ namespace LabEncapsulationDemo
           throw new ArgumentException("Last name cannot be empty or contain only whitespace.");
         }
 
-        // LastName must be at least 3 symbols
+        // Part3: LastName must be at least 3 symbols
         if (value.Length < 3)
         {
           throw new ArgumentException("Last name cannot contain fewer than 3 symbols!");
         }
-        lastName = value;
+        _lastName = value;
       }
     }
 
@@ -69,16 +69,16 @@ namespace LabEncapsulationDemo
     {
       get
       {
-        return age;
+        return _age;
       }
       private set
-      {
+      { // Part3: Age must not be -zero- or negative
         if (value <= 0)
         {
           throw new ArgumentException(
              "Age cannot be zero or a negative integer!");
         }
-        age = value;
+        _age = value;
       }
     }
 
@@ -86,7 +86,7 @@ namespace LabEncapsulationDemo
     {
       get // get accessor
       {
-        return salary;
+        return _salary;
       }
       private set
       {
@@ -95,33 +95,37 @@ namespace LabEncapsulationDemo
           throw new ArgumentOutOfRangeException(
              nameof(value),
              "Salary cannot be negative.");
-        }
+        } // Part3: Salary can't be less than 460.0 
         if (value >= 0 && value < 460)
         {
           throw new ArgumentException(
              "Salary cannot be less than 460 dollar!");
         }
-        salary = value;
+        _salary = value;
       }
     }
 
     // Methods
     public override string ToString()
     {
+      // Part1:
       // return $"{FirstName} {LastName} is {Age} years old.";
-      // return $"{FirstName} {LastName} receives {salary:F2} dollars.";
-      return $"{FirstName} {LastName} receives {salary.ToString("F2", CultureInfo.InvariantCulture)} dollars."; // To show dot instead of comma for decimals.
+
+      // Part2:
+      // return $"{FirstName} {LastName} receives {salary:F2} dollars."; // To format salary to 2 decimals.
+      return $"{FirstName} {LastName} receives {_salary.ToString("F2", CultureInfo.InvariantCulture)} dollars."; // To show dot instead of comma for decimals.
     }
 
+    // Part2: Expand Person, salary (decimal), IncreaseSalary(decimal percentage) 
     public void IncreaseSalary(decimal percentage)
     {
-      if (age < 30) // person should receive half the percentage increase
+      if (_age < 30) // person should receive half the percentage increase
       {
-        salary += (percentage * salary / 100) / 2;
+        _salary += (percentage * _salary / 100) / 2;
       }
       else // person should receive full percentage increase
       {
-        salary += percentage * salary / 100;
+        _salary += percentage * _salary / 100;
       }
     }
   }

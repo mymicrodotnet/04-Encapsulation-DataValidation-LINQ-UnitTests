@@ -41,23 +41,24 @@ namespace LabEncapsulationDemo
         }
         else
         {
-          Console.WriteLine("Åldern måste vara ett heltal.");
+          Console.WriteLine("Age must be an integer.");
         }
       }
-      // Part2: Increase salary percentage
+
+      // Part2: Increase each person's salary.
       persons.ForEach(p => p.IncreaseSalary(bonus));
+      
+      // Part 1: Sort Persons by Name and Age (Sort by first name, then by age, and print each person.)
+      // /*
+      persons.OrderBy(p => p.FirstName)   // Sort the list of people by first name.
+             .ThenBy(p => p.Age)          // If the first names are the same, sort by age.
+             .ToList()                    // Convert the result to a list.
+             .ForEach(p => Console.WriteLine(p.ToString()));  // Print each person in the list to the console.
+                                                              // For each person in the list, print the result of p.ToString() to the console. 
+      // */
+      // Part2: Increase each person's salary. without sorting
+      // persons.ForEach(p => Console.WriteLine(p.ToString()));
 
-
-      //Part2: If sorting, uncomment the block below and comment line 58
-      /* 
-            persons.OrderBy(p => p.FirstName)   // Sortera listan av personer efter förnamn
-                   .ThenBy(p => p.Age)          // Om förnamnen är lika, sortera efter ålder
-                   .ToList()                    // Konvertera resultatet till en lista
-                   .ForEach(p => Console.WriteLine(p.ToString()));  // Skriv ut varje person i listan till konsolen
-                                                                    // För varje person i listan, skriv ut resultatet av p.ToString() till konsolen. 
-                                                                    */
-
-      persons.ForEach(p => Console.WriteLine(p.ToString()));
     }
   }
 }
